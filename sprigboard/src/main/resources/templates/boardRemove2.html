@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<style></style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#btn').click(function(){
+			if($('#sex').val() == 'female'){
+				$('#result').text('남');
+			} else if($('#sex').val() == 'male'){
+				$('#result').text('여');
+			} else {
+				$('#result').text('아닌데용');
+			}
+		});
+	});
+</script>
+
+<body>
+	<div><input type = "text" value = "" id = "sex"></div>
+	<div><input type = "button" id = "btn">submit</div>
+	<div id = "result"></div>
+</body>
+</html>
