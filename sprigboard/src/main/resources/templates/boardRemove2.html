@@ -1,28 +1,48 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th= "http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
+
 <style></style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$('#btn').click(function(){
-			if($('#sex').val() == 'female'){
-				$('#result').text('��');
-			} else if($('#sex').val() == 'male'){
-				$('#result').text('��');
+		$('#delete').click(function(){
+			console.log('test');
+			if($('#boardPW').val() == $('#pw').val()){
+				$('#form').submit();
 			} else {
-				$('#result').text('�ƴѵ���');
+				$('#boardPW').val('비밀번호 불일치.');
+				$('#boardPW').focus();
 			}
 		});
 	});
 </script>
-
+</head>
 <body>
-	<div><input type = "text" value = "" id = "sex"></div>
-	<div><input type = "button" id = "btn">submit</div>
-	<div id = "result"></div>
-</body>
-</html>
+<h1>boardRemove</h1>
+<a href = "/boardAdd">[글쓰기]</a>
+<a href = "/boardList">[글목록]</a>		
+<input type ="hidden" th:id = "pw" th:value = "${board.boardPw}">
+<table border="1">
+	<tr>
+		<td>No</td>
+		<td>제목</td>
+		<td colspan="2">글쓴이</td>
+	</tr>
+	<tr>
+	    <!-- Board객체 내 b -->
+		<td th:text="${board.boardNo}"></td>
+		<td th:text="${board.boardTitle}"></td>
+		<td th:text="${board.boardUser}"></td>
+	</tr>
+	<tr>
+		<td>내용</td>
+		<td th:text="${board.boardContent}"></td>
+		<td></td>
+	</tr>	
+</table>
+<form id = "form" action = "/boardRemove" method="post">
+			<input type="hidden" th:name="boardNo" th:value=${board.boardNo}><br>
+비밀번호 입력 :	<input type="text" id = "boardPW" name="boardPw" value = "">
+			<input type="button" id = "delete"value="삭제 완료">	
+</form>	
+</body> 

@@ -1,7 +1,14 @@
+<!-- board_add_form.php -->
+<!DOCTYPE html>
 <html xmlns:th= "http://www.thymeleaf.org">
 <head>
-
-<style></style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <title>BOARDDELETE</title>
+</head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -11,34 +18,48 @@
 				$('#form').submit();
 			} else {
 				$('#boardPW').val('비밀번호 불일치.');
+				$('#boardPW').focus();
 			}
 		});
 	});
 </script>
-</head>
 <body>
-<input type ="hidden" th:id = "pw" th:value = "${board.boardPw}">
-<table border="1">
-	<tr>
-		<td>No</td>
-		<td>제목</td>
-		<td colspan="2">글쓴이</td>
-	</tr>
-	<tr>
-	    <!-- Board객체 내 b -->
-		<td th:text="${board.boardNo}"></td>
-		<td th:text="${board.boardTitle}"></td>
-		<td th:text="${board.boardUser}"></td>
-	</tr>
-	<tr>
-		<td>내용</td>
-		<td th:text="${board.boardContent}"></td>
-		<td></td>
-	</tr>	
-</table>
-<form id = "form" action = "/boardRemove" method="post">
-			<input type="hidden" th:name="boardNo" th:value=${board.boardNo}><br>
-비밀번호 입력 :   <input type="text" id = "boardPW" name="boardPw" value = "">
-			<input type="button" id = "delete"value="삭제 완료">	
-</form>	
-</body> 
+    <div class="container">
+        <h1>BOARD DELETE</h1>
+        <form id="form" action="/boardRemove" method="post">
+            <input type ="hidden" th:id = "pw" th:value = "${board.boardPw}">
+            <div class="form-group">
+                <label for="board_No">board No :</label> 
+                <input class="form-control" type="text" th:name="boardNo" th:value=${board.boardNo} readonly>
+            </div>
+            <div class="form-group">
+                <label for="board_title">board Title :</label> 
+                <input class="form-control" type="text" th:name="boardTitle" th:value=${board.boardTitle}>
+            </div>
+            <div class="form-group">
+                <label for="board_content">board Content :</label>
+                <textarea class="form-control" th:name="boardContent" th:text=${board.boardContent}></textarea>
+            </div>
+            <div class="form-group">
+                <label for="board_user">board User :</label> 
+                <input class="form-control" type="text" th:name="boardUser" th:value=${board.boardUser} readonly>
+            </div>
+            <div class="form-group">
+                <label for="board_date">board Date :</label> 
+                <input class="form-control" type="text" th:name="boardDate" th:value=${board.boardDate} readonly>
+            </div>
+            <div class="form-group">
+                <label for="board_pw">board Pw :</label> 
+                <input class="form-control" type="text" id="boardPW" name="boardPw" value = "" />
+            </div>
+            <div>
+            	<input type="hidden" th:name="boardNo" th:value=${board.boardNo}>
+                <input class="btn btn-default" id = "delete" type="button" value="삭제" /> 
+                <a class="btn btn-default" href = "/boardAdd">글쓰기</a>
+                <a class="btn btn-default" href = "/boardList">글목록</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -1,22 +1,39 @@
 <html xmlns:th= "http://www.thymeleaf.org">
-<table border="1">
-	<tr>
-		<td>No</td>
-		<td>제목</td>
-		<td colspan="2">글쓴이</td>
+<head>
+    <!-- bootstrap을 사용하기 위한 CDN주소 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>boardView</h1>
+        <table class="table table-striped">
+            <tr>
+				<td>No</td>
+				<td>제목</td>
+				<td colspan="2">글쓴이</td>
+			</tr>
 
-	</tr>
+			<tr>
+				<td th:text="${board.boardNo}"></td>
+				<td th:text="${board.boardTitle}"></td>
+				<td th:text="${board.boardUser}"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td th:text="${board.boardContent}" ></td>
+				<td><a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a></td>
+				<td><a th:href = "@{/boardRemove(boardNo=${board.boardNo})}">삭제</a></td>		
+			</tr>	
+        </table>
+        <a class="btn btn-default" href="/boardList">글목록</a>
+    </div>
+</body>
+</html>
 
-	<tr>
-		<td th:text="${board.boardNo}"></td>
-		<td th:text="${board.boardTitle}"></td>
-		<td colspan="2" th:text="${board.boardUser}"></td>
 
-	</tr>
-	<tr>
-		<td>내용</td>
-		<td th:text="${board.boardContent}" ></td>
-		<td><a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a></td>
-		<td><a th:href = "@{/boardRemove(boardNo=${board.boardNo})}">삭제</a></td>		
-	</tr>	
-</table> 

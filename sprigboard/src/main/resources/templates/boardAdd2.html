@@ -1,0 +1,44 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#ADD').click(function(){
+			if($('#title').val() == ""){
+				$('#titlebo').text('타이틀을 입력하세요');
+				$('#title').focus();
+			} else if ($('#content').val() == ""){
+				$('#titlebo').text('');
+				$('#contentbo').text('컨텐츠를 입력하세요');
+				$('#content').focus();
+			} else if ($('#user').val() == ""){
+				$('#titlebo').text('');
+				$('#contentbo').text('');
+				$("#userbo").text('유져이름을 입력하세요');
+				$('#user').focus();	
+			} else if ($('#pw').val().length < 4){
+				$('#titlebo').text('');
+				$('#contentbo').text('');
+				$('#userbo').text('');
+				$('#pwbo').text('비밀번호를 4자 이상 입력하세용~');
+				$('#pw').focus();
+			} else {
+				$('#form').submit();
+			}
+				
+		});
+	});
+
+</script>
+</head>
+<body>
+<h1>boardAdd</h1>
+<a href = "/boardList">[글목록]</a>
+<!-- 화면에 입력된 데이터를  post방식으로 /boardAdd로 전송 -->
+<form id = "form" action = "/" method="post">	
+	제 목 : <input type="text" id = "title" name="boardTitle" value = ""><span id = "titlebo"></span><br>
+	내 용 : <textarea name="boardContent" id = "content" value = ""></textarea><span id = "contentbo"></span><br>
+	글쓴이 : <input type="text" id = "user" name="boardUser"><span id = "userbo"></span> <br>
+	비밀번호 : <input type="text" id = "pw" name="boardPw"><span id = "pwbo"></span><br>
+	<input type="button" id = "ADD" value="글 입력">
+</form> 
+</body>

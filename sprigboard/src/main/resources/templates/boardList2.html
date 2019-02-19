@@ -2,7 +2,9 @@
 <head>
 </head>
 <body>
+	<h1>boardList</h1>
 	전체 행 : <span th:text = "${boardCount}"></span>
+	<a href = "/boardAdd">[글쓰기]</a>	
 	<table border=1>
 		<tr>
 			<td>No</td>
@@ -30,6 +32,6 @@
 			<span th:if="${currentPage < lastPage + 1}">
 				<a th:href = "@{boardList(currentPage=${currentPage} + 1)}">[다음]</a>
 				<a th:href = "@{boardList(currentPage=${lastPage} + 1)}">[마지막 페이지]</a>
-			</span>			
+			</span>		
 </body>
 </html> 

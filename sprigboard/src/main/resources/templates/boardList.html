@@ -1,28 +1,37 @@
+
 <html xmlns:th= "http://www.thymeleaf.org">
 <head>
+    <!-- bootstrap을 사용하기 위한 CDN주소 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-	전체 행 : <span th:text = "${boardCount}"></span>
-	<table border=1>
-		<tr>
-			<td>No</td>
-			<td>제 목</td>
-			<td>글쓴이</td>					
-		</tr>
-		<!-- Map영역에 세팅된 Board객체 주소 받기 -->
-		<tr th:each="s : ${resultMap.list}">
-		<!-- 각각의 Board객체에 세팅된 데이터 출력하기 -->	
-			<td th:text="${s.boardNo}"></td>
-			<td>
-			<!-- 제목 클릭시 boardNo에 복사된 값을 가지고 get방식으로 boardView로 이동 -->
-				<a th:href = "@{boardView(boardNo=${s.boardNo})}">
-					<span th:text = "${s.boardTitle}"></span>			
-				</a>
-			</td>
+    <div class="container">
+        <h1>boardList</h1>
+        
+            <table class="table table-striped">
+                <tr>
+					<td>No</td>
+					<td>제 목</td>
+					<td>글쓴이</td>					
+				</tr>	
+                <!-- Map영역에 세팅된 Board객체 주소 받기 -->
+				<tr th:each="s : ${resultMap.list}">
+					<td th:text="${s.boardNo}"></td>
+					<td>
+						<a th:href = "@{boardView(boardNo=${s.boardNo})}">
+							<span th:text = "${s.boardTitle}"></span>			
+						</a>
+					</td>
 			<td th:text="${s.boardUser}"></td>				
 		</tr>
-	</table>	
-			<!-- 페이징 출력 -->										
+            </table>
+            <ul class="pager">
+                <!-- 페이징 출력 -->										
 			<span th:if="${currentPage > 1}">
 				<a th:href = "@{boardList(currentPage=1)}">[처음 페이지]</a>
 				<a th:href = "@{boardList(currentPage=${currentPage} - 1)}">[이전]</a>	
@@ -30,6 +39,13 @@
 			<span th:if="${currentPage < lastPage + 1}">
 				<a th:href = "@{boardList(currentPage=${currentPage} + 1)}">[다음]</a>
 				<a th:href = "@{boardList(currentPage=${lastPage} + 1)}">[마지막 페이지]</a>
-			</span>			
+			</span>
+            </ul>
+        <div>
+            <a class="btn btn-default" href = "/boardAdd">게시글 입력</a>
+        <div>
+    </div>
 </body>
-</html> 
+</html>
+
+
