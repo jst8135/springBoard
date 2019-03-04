@@ -42,7 +42,7 @@
 <body>
     <div class="container">
         <h1>BOARD ADD</h1>
-        <form id="form" action="/boardAdd" method="post">
+        <form id="form" action="/boardAdd" method="post" enctype = "multipart/form-data">
             
             <div class="form-group">
                 <label for="board_title">boardTitle :</label> 
@@ -53,12 +53,16 @@
                 <textarea class="form-control" name="boardContent" id="content" rows="5" cols="50" value = ""></textarea><span id = "contentbo"></span>
             </div>
             <div class="form-group">
-                <label for="board_user">boardName :</label> 
+                <label for="board_user">boardUser :</label> 
                 <input class="form-control" name="boardUser" id="user" type="text" /><span id = "userbo"></span>
             </div>
             <div class="form-group">
                 <label for="board_pw">boardPw :</label> 
                 <input class="form-control" name="boardPw" id="pw" type="text" /><span id = "pwbo"></span>
+            </div>
+            <div class="form-group">
+                <label for="board_pw">boardFile :</label> 
+                <input class="form-control" name="files" id="" type="file" /><span id = ""></span>
             </div>
             <div>
                 <input class="btn btn-default" id = "ADD" type="button" value="글입력" /> 

@@ -15,7 +15,7 @@
             <tr>
 				<td>No</td>
 				<td>제목</td>
-				<td colspan="2">글쓴이</td>
+				<td>글쓴이</td>
 			</tr>
 
 			<tr>
@@ -27,9 +27,21 @@
 			<tr>
 				<td>내용</td>
 				<td th:text="${board.boardContent}" ></td>
-				<td><a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a></td>
-				<td><a th:href = "@{/boardRemove(boardNo=${board.boardNo})}">삭제</a></td>		
+				<td><a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a>
+				<a th:href = "@{/boardRemove(boardNo=${board.boardNo})}">삭제</a></td>		
+			</tr>
+			<tr>
+				<td>파일</td>
+				<td>파일명</td>
+				<td></td>	
 			</tr>	
+       		<tr>
+				<td>file</td>
+				<td>????</td>
+				<td><a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a></td>
+
+			</tr>	
+       			
         </table>
         <a class="btn btn-default" href="/boardList">글목록</a>
     </div>

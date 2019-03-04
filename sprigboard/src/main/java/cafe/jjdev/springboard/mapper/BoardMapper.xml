@@ -38,9 +38,14 @@
 			 	count(board_no)
 			FROM board		
 	</select>
+	
 	<!-- 글을 등록하는 insert쿼리문 -->
 	<insert id="insertBoard"
 			parameterType="cafe.jjdev.springboard.vo.Board">
+			
+	<selectKey resultType="int" keyProperty="boardNo" order="AFTER">
+	            SELECT LAST_INSERT_ID()
+	</selectKey>
 			INSERT INTO 
 				board(
 					board_pw,

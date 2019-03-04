@@ -2,6 +2,8 @@ package cafe.jjdev.springboard.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cafe.jjdev.springboard.service.BoardService;
 import cafe.jjdev.springboard.vo.Board;
+import cafe.jjdev.springboard.vo.BoardRequest;
 
 @Controller
 public class BoardController {
@@ -71,11 +74,26 @@ public class BoardController {
 
 
     // 입력(액션) 요청 - 입력폼에 입력된 데이터를 받아 Board객체에 세팅. BoardService객체 내 addBoard메서드를 호출. 리다이렉트 방식으로 boardList로 이동.
+   
     @PostMapping(value="/boardAdd")
-    public String boardAdd(Board board) {
+    // 타입  (@RequestParam(value="file")MultipartFile[] file) <--? vo페키지에 담아서 board로 사용하면됨
+    public String boardAdd(BoardRequest boardRequest, HttpServletRequest request){
     	//spring이 board를 채워주려함=command객체, 필드명=인풋타임명 =>setter
-        System.out.println(board);
-        boardService.addBoard(board);
+        System.out.println(boardRequest);
+		/* Service
+		 * 1.board 안에 fileList분해하여 DB에들어갈수있는 형태로 작업해야한다.
+		 * 2.파일 저장: 파일경로...
+		 */
+        //졸라어렵다! 이경로!
+        String path = request.getSession().getServletContext().getRealPath("./");
+        
+        try {
+			boardService.addBoard(boardRequest,path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
         return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     }
     // 입력페이지 요청 - 웹브라우저 경로에 boardAdd를 입력하면 boardAdd.html화면이 출력.
